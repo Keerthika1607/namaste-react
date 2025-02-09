@@ -1,0 +1,36 @@
+/**
+ * <div id="parent">
+ *    <div id="child">
+ *       <h1>I am H1 Tag</h1>
+ *       <h2>I am H2 Tag</h2>
+ *    </div>
+ * </div>    
+ * At the end reactElement is an object becomes HTML that the browser understands.
+ * createElement not creating an element but create an object while it is rendering onto the DOM it converts itself into that HTML and push it up into the DOM.
+ */
+---------------------------------------
+import React from "react";//This react refers to react package in node modules
+import ReactDOM from "react-dom/client";
+
+
+ /*
+const parent = React.createElement("div", {id:"parent"}, [
+   React.createElement("div", {id:"child"}, [
+      React.createElement("h1", {}, "I'm H1 Tag"), 
+      React.createElement("h2", {}, "I'm H2 Tag")
+   ]),
+   React.createElement("div", {id:"child2"}, [
+      React.createElement("h1", {}, "I'm H1 Tag"), 
+      React.createElement("h2", {}, "I'm H2 Tag")
+   ]),
+]);
+      console.log(parent);
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(parent);
+*/
+/*
+const heading = React.createElement("h1", {id:"heading"}, "Hello World from React!");//It basically creates an javascript object for you. This is the react element it is not actual h1 tag.
+console.log(heading);//This will return object to us. This object is a react element.
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(heading);//It will do render method will take this object and put it up and convert it into that heading tag.And put it up on the DOM.
+*/
