@@ -37,7 +37,7 @@ class UserClass extends React.Component {
       const {name, location, avatar_url} = this.state.userInfo;
       // debugger;
       return (
-         <div className="user-card">
+         <div className="user-card m-4 p-4 bg-gray-50 rounded-lg">
             <img src={avatar_url}/>
             <h2>NAME : {name}</h2>
             <h3>LOCATION : {location}</h3>
