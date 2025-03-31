@@ -8,6 +8,8 @@ import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import appStore from "./utils/AppStore";
 // import Grocery from "./components/Grocery";
 
 //Chunking 
@@ -19,11 +21,14 @@ import RestaurantMenu from "./components/RestaurantMenu";
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
+
    return (
-      <div className="app">
-         <Header />
-         <Outlet />
-      </div>
+      <Provider store={appStore}>
+         <div className="app">
+            <Header />
+            <Outlet /> {/*It will replaced according to the route */}
+         </div>
+      </Provider>
    )
 };
 
@@ -53,7 +58,7 @@ const appRouter = createBrowserRouter([
             element: <Suspense fallback={<h1>Loading...</h1>}><Grocery /></Suspense>,
          },
          {
-            path: "/restaurants/:resId",
+            path: "/restaurants/:resId",//Dynamic path for different restaurant
             element: <RestaurantMenu />,
          },
       ],

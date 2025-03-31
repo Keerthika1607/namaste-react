@@ -1,27 +1,25 @@
 import React from "react";
 
 class UserClass extends React.Component {
-   constructor(props){
+   constructor(props) {
       super(props);
       
       this.state = {
-         userInfo : {
-            name : "dummy",
-            location : "dummy location",
-            // image : "https://gratisography.com/wp-content/uploads/2025/02/gratisography-flower-beard-1-1170x780.jpg",
+         userInfo: {
+            name: "Loading...",
+            location: "Fetching location...",
+            avatar_url: "https://via.placeholder.com/150", 
          },
       };
    }
 
-   async componentDidMount () {
+   async componentDidMount() {
       const data = await fetch("https://api.github.com/users/Keerthika1607");
       const json = await data.json();
 
       this.setState({
-         userInfo : json,
+         userInfo: json,
       });
-
-      console.log(json);
    }
 
    componentDidUpdate() {
@@ -29,19 +27,22 @@ class UserClass extends React.Component {
    }
 
    componentWillUnmount() {
-      console.log("component Will Unmount");
+      console.log("Component Will Unmount");
    }
 
    render() {
-      // const {name, location} = this.props;
-      const {name, location, avatar_url} = this.state.userInfo;
-      // debugger;
+      const { name, location, avatar_url } = this.state.userInfo;
+
       return (
-         <div className="user-card m-4 p-4 bg-gray-50 rounded-lg">
-            <img src={avatar_url}/>
-            <h2>NAME : {name}</h2>
-            <h3>LOCATION : {location}</h3>
-            <h4>MAIL ID : keerthika.thiru16072003@gmail.com</h4>
+         <div className="max-w-sm mx-auto bg-white shadow-lg rounded-xl p-6 text-center border border-gray-200">
+            <img 
+               src={avatar_url} 
+               alt="User Avatar" 
+               className="w-32 h-32 mx-auto rounded-full border-4 border-gray-300"
+            />
+            <h2 className="text-xl font-bold mt-4 text-gray-800">{name}</h2>
+            <h3 className="text-gray-600 text-md mt-2">📍 {location}</h3>
+            <h4 className="text-gray-500 text-sm mt-2">✉️ keerthika.thiru16072003@gmail.com</h4>
          </div>
       );
    }

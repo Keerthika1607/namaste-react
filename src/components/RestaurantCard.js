@@ -1,42 +1,37 @@
 import { CDN_URL } from "../utils/constants";
 
-const styleCard = {
-   backgroundColor: "#f0f0f0",
-};
+const RestaurantCard = (props) => {
+  const { resData } = props;
+  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } = resData?.info;
+  const { deliveryTime } = resData?.info.sla;
 
-const RestaurantCard = (props) => {//props is an object.
-   // console.log(props);
-   const { resData } = props;
-   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } = resData?.info;
-   const {deliveryTime} = resData?.info.sla;
-   return (
-      <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-900">
-         <img 
-            className="rounded-lg" 
-            alt="res-logo" 
-            src={CDN_URL + cloudinaryImageId }
-         />
-         <h3 className="font-bold py-4 text-lg">{name}</h3>
-         <h4>{cuisines.join(", ")}</h4>
-         <h4>{avgRating}</h4>
-         <h4>{costForTwo}</h4>
-         <h4>{deliveryTime} minutes</h4>
+  return (
+    <div className="m-4 p-4 w-[280px] bg-white shadow-lg rounded-lg hover:shadow-2xl transition-all duration-300">
+      {/* Restaurant Image */}
+      <img 
+        className="w-full h-40 object-cover rounded-lg" 
+        alt="restaurant-logo" 
+        src={CDN_URL + cloudinaryImageId }
+      />
+
+      {/* Restaurant Details */}
+      <div className="mt-4">
+        <h3 className="font-bold text-lg text-gray-900">{name}</h3>
+        <h4 className="text-sm text-gray-600 truncate">{cuisines.join(", ")}</h4>
+        
+        {/* Rating and Cost Row */}
+        <div className="flex justify-between items-center mt-2">
+          <span className="bg-green-500 text-white text-sm font-semibold px-2 py-1 rounded-md">
+            ⭐ {avgRating}
+          </span>
+          <h4 className="text-gray-800 font-semibold">{costForTwo}</h4>
+        </div>
+
+        {/* Delivery Time */}
+        <h4 className="text-gray-500 text-sm mt-2">🚀 {deliveryTime} mins</h4>
       </div>
-   )
-};
-
-//Higher Order Component
-export const withPromotedLabel = (RestaurantCard) => {
-   return(props) => {
-      return (
-         <div>
-            <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
-               Promoted
-            </label>
-            <RestaurantCard {...props} />
-         </div>
-      );
-   };
+    </div>
+  );
 };
 
 export default RestaurantCard;
