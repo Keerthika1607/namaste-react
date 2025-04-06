@@ -11,6 +11,7 @@ const Header = () => {
    {/* Subscribing to the store using selector */}
    const cartItems = useSelector((store) => store.cart.items);
 
+
    return (
       <div className="flex justify-between items-center h-24 px-8 bg-gradient-to-r from-green-500 to-blue-600 text-white shadow-lg">
          {/* Logo */}
